@@ -78,9 +78,9 @@ export function run(N: number, initial?: number) {
           ? data.STATS.toIV(data.STATS.getHPDV(ivs))
           : random.next(0, 31);
         evs[stat] = random.next(0, gen >= 3 ? Math.min(total, 252) : 252);
-        total -= evs[stat]!;
+        total -= evs[stat];
         stats[stat] =
-          data.STATS.calc(gen, stat, base[stat]!, ivs[stat], evs[stat], level, nature);
+          data.STATS.calc(gen, stat, base[stat], ivs[stat], evs[stat], level, nature);
       }
       if (gen >= 3) assert(total >= 0);
 
@@ -105,13 +105,13 @@ export function run(N: number, initial?: number) {
       calced = {};
       for (const stat of data.STATS) {
         if (s.ivs[stat]) {
-          assert(s.ivs[stat]! >= 0);
-          assert(s.ivs[stat]! <= 31);
+          assert(s.ivs[stat] >= 0);
+          assert(s.ivs[stat] <= 31);
         }
         if (s.evs[stat]) {
-          assert(s.evs[stat]! >= 0);
-          assert(s.evs[stat]! <= 255);
-          total += s.evs[stat]!;
+          assert(s.evs[stat] >= 0);
+          assert(s.evs[stat] <= 255);
+          total += s.evs[stat];
         }
         calced[stat] =
           data.STATS.calc(gen, stat, base[stat]!, s.ivs[stat], s.evs[stat], level, n);

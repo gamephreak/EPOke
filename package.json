@@ -3,14 +3,14 @@
   "repository": "github:pkmn/EPOke",
   "license": "MIT",
   "devDependencies": {
-    "@pkmn/eslint-config": "^6.6.0",
+    "@pkmn/eslint-config": "^8.1.0",
     "@types/jest": "^29.5.12",
-    "@types/node": "^20.11.16",
-    "binaryen": "^116.0.0",
-    "eslint": "^8.56.0",
+    "@types/node": "^22.5.0",
+    "binaryen": "^118.0.0",
+    "eslint": "<=8",
     "subpkg": "^4.1.0",
-    "typescript": "^5.3.3",
-    "vitest": "^1.2.2"
+    "typescript": "^5.5.4",
+    "vitest": "^2.0.5"
   },
   "subPackages": ["epoke", "gmd", "predictor", "spreads"],
   "scripts": {

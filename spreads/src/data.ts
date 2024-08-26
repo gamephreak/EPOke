@@ -14,7 +14,7 @@ export interface Nature {
 }
 
 // NOTE: We are depending on ES2015 ordering guarantees
-const DATA: { [k: string]: Nature } = {
+const DATA: {[k: string]: Nature} = {
   hardy: {name: 'Hardy'},
   lonely: {name: 'Lonely', plus: 'atk', minus: 'def'},
   adamant: {name: 'Adamant', plus: 'atk', minus: 'spa'},
@@ -62,7 +62,7 @@ export const NATURES = new class {
 
 const STAT_NAMES = ['hp', 'atk', 'def', 'spe', 'spa', 'spd'] as const;
 
-const NAMES: Readonly<{ [name: string]: StatID }> = {
+const NAMES: Readonly<{[name: string]: StatID}> = {
   HP: 'hp', hp: 'hp',
   Attack: 'atk', Atk: 'atk', atk: 'atk',
   Defense: 'def', Def: 'def', def: 'def',
@@ -72,7 +72,7 @@ const NAMES: Readonly<{ [name: string]: StatID }> = {
   Speed: 'spe', Spe: 'spe', Spd: 'spe', spe: 'spe',
 };
 
-const DISPLAY: Readonly<{ [stat: string]: Readonly<[string, string]> }> = {
+const DISPLAY: Readonly<{[stat: string]: Readonly<[string, string]>}> = {
   hp: ['HP', 'HP'],
   atk: ['Atk', 'Attack'],
   def: ['Def', 'Defense'],

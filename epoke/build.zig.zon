@@ -1,0 +1,8 @@
+.{
+    .name = "EPOké",
+    .version = "0.1.0-dev",
+    .paths = .{"."},
+    .dependencies = .{
+        .pkmn = .{ .path = "node_modules/@pkmn/engine" },
+    },
+}
