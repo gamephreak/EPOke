@@ -4,6 +4,7 @@ Thumbs.db
 .vscode
 
 # Zig
+.zig-cache/
 zig-cache/
 zig-out/
 build/
