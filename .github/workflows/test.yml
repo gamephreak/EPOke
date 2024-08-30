@@ -19,6 +19,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: AnnikaCodes/install-ziglint@main
+      # TODO: remove once install-ziglint is fixed to properly place binary on the path
+      - run: echo "${GITHUB_WORKSPACE}" >> $GITHUB_PATH
       - uses: goto-bus-stop/setup-zig@v2
         with:
           version: ${{matrix.zig}}
