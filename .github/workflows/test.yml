@@ -1,17 +1,26 @@
 name: Tests
 on:
+  schedule:
+    - cron: "0 2 * * *"
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event_name }}
+  cancel-in-progress: true
 jobs:
   build:
+    strategy:
+      fail-fast: false
+      matrix:
+        zig: [0.11.0, master]
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: goto-bus-stop/setup-zig@v2
-    - uses: AnnikaCodes/install-ziglint@v0.1
-    # TODO: remove once install-ziglint is fixed to properly place binary on the path
-    - run: echo "${GITHUB_WORKSPACE}" >> $GITHUB_PATH
-    - run: npm install
-    - run: npm run integration
+      - uses: actions/checkout@v4
+      - uses: AnnikaCodes/install-ziglint@main
+      - uses: goto-bus-stop/setup-zig@v2
+        with:
+          version: ${{matrix.zig}}
+      - run: npm install
+      - run: npm run integration
