@@ -10,8 +10,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - uses: goto-bus-stop/setup-zig@v2
-      with:
-        version: 0.11.0
-    - uses: AnnikaCodes/install-ziglint@main
+    - uses: AnnikaCodes/install-ziglint@v0.1
+    # TODO: remove once install-ziglint is fixed to properly place binary on the path
+    - run: echo "${GITHUB_WORKSPACE}" >> $GITHUB_PATH
     - run: npm install
     - run: npm run integration
