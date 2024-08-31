@@ -26,13 +26,7 @@ pub fn build(b: *std.Build) !void {
 
     const showdown =
         b.option(bool, "showdown", "Enable Pokémon Showdown compatibility mode") orelse true;
-    const module = pkmn.module(b, .{ .showdown = showdown });
-
-    const bin = b.pathJoin(&.{ "node_modules", ".bin" });
-    const install = b.findProgram(&.{"install-pkmn-engine"}, &.{bin}) catch unreachable;
-    const options = b.fmt("--options=-Dlog{s}", .{if (showdown) " -Dshowdown" else ""});
-    const engine = b.addSystemCommand(&[_][]const u8{ install, options, "--silent" });
-    b.getInstallStep().dependOn(&engine.step);
+    const module = pkmn.module(b, .{ .log = true, .showdown = showdown });
 
     const node_modules = b.pathJoin(&.{ "node_modules", "@pkmn", "@engine", "build" });
     const node = if (b.findProgram(&.{"node"}, &.{})) |path| path else |_| {
@@ -145,6 +139,7 @@ pub fn build(b: *std.Build) !void {
         if (@hasDecl(@TypeOf(wasm.*), "strip")) wasm.strip = release;
 
         const installed = if (release) installed: {
+            const bin = b.pathJoin(&.{ "node_modules", ".bin" });
             if (b.findProgram(&.{"wasm-opt"}, &.{bin})) |opt| {
                 const sh = b.addSystemCommand(&.{ opt, "-O4" });
                 sh.addArtifactArg(wasm);
